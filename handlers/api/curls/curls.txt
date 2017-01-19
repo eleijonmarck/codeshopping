@@ -1,0 +1,4 @@
+curl -v -XPUT -d '{name : "swedish"}' localhost:8080/carts/create?key=swedish
+
+# get the swedish gopher item
+curl -v -XGET localhost:8080/carts/get?key=swedish
