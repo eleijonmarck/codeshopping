@@ -36,4 +36,5 @@ I den här exempelapplikationen kommer vi att sätta upp ett enkelt Continuous D
 
 
 
-
+# codeshopping
+A webshop purely focused on programming / code / machine learning / math / computer science
