@@ -1,4 +1,4 @@
-node_modules
+appWebClient/node_modules
 coverage
 lib
 *.log
