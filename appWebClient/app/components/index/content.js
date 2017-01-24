@@ -1,1 +1,2 @@
-module.exports = "Exported module from content.js works.";
+import { Button } from 'bootstrap';
+module.exports = "<div class="button">Exported module from content.js works.</button>";
