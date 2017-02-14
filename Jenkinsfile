@@ -1,7 +1,10 @@
 #!/usr/bin/env groovy
 
-try {
-    node {
+stageUrl = 'localhost:8080'
+stage 'CI'
+node {
+     git branch: 'master',
+     url: 'https://github.com/eleijonmarck/codeshopping.git'
         stage('Build') {
             steps {
                 echo 'Building..'
@@ -17,5 +20,4 @@ try {
                 echo 'Deploying....'
             }
         }
-    }
 }
