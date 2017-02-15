@@ -7,7 +7,7 @@ node {
      url: 'https://github.com/eleijonmarck/codeshopping.git'
         stage('Build') {
             steps {
-                echo 'Building........'
+                echo 'Building......'
             }
         }
         stage('Test') {
