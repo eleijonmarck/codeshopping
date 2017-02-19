@@ -1,7 +1,6 @@
 #!/usr/bin/env groovy
 
 stageUrl = 'localhost:8080'
-stage 'CI'
 node {
         stage('Build') {
                 echo 'Building......'
