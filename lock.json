@@ -1,0 +1,21 @@
+{
+    "memo": "a105588b40dbb087d460d0a2ca855230faa076f1124c82d8a8349b5ff4ce156e",
+    "projects": [
+        {
+            "name": "github.com/garyburd/redigo",
+            "branch": "master",
+            "revision": "0d253a66e6e1349f4581d6d2b300ee434ee2da9f",
+            "packages": [
+                "redis"
+            ]
+        },
+        {
+            "name": "github.com/pborman/uuid",
+            "branch": "master",
+            "revision": "1b00554d822231195d1babd97ff4a781231955c9",
+            "packages": [
+                "."
+            ]
+        }
+    ]
+}

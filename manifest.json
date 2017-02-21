@@ -1,0 +1,10 @@
+{
+    "dependencies": {
+        "github.com/garyburd/redigo": {
+            "branch": "master"
+        },
+        "github.com/pborman/uuid": {
+            "branch": "master"
+        }
+    }
+}
