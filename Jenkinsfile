@@ -7,8 +7,9 @@ node {
                 echo 'wtf.....'
         }
         stage('Test') {
-                echo 'Testing..'
+            make test
         }
+
         stage('Deploy') {
                 echo 'Deploying....'
         }
