@@ -9,6 +9,7 @@ node {
         stage('Test') {
             echo "Running make test"
             sh "go test -race -v $(go list ./... | grep -v /vendor/)"
+            echo "ran the tests"
         }
 
         stage('Deploy') {
