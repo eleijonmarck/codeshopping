@@ -14,7 +14,6 @@ type cartRepository struct {
 
 func (r *cartRepository) Store(cart *cart.Cart) error {
 
-	// makes a copy of the struct that is pointed to by the pointer
 	c := r.Pool.Get()
 	defer c.Close()
 	serialized, err := json.Marshal(&cart)

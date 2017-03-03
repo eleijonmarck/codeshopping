@@ -9,9 +9,8 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/eleijonmarck/codeshopping/api"
 	"github.com/eleijonmarck/codeshopping/cart"
-	"github.com/eleijonmarck/codeshopping/handlers"
-	"github.com/eleijonmarck/codeshopping/handlers/api"
 	"github.com/eleijonmarck/codeshopping/redisdb"
 	"github.com/garyburd/redigo/redis"
 )
@@ -53,13 +52,13 @@ func main() {
 	// api
 	mux.Handle("/carts/", api.GetCart(carts))
 	mux.Handle("/carts/create", api.CreateCart(carts))
+	mux.Handle("/", api.IndexHandler())
 
 	// test storage
 	storeTestData(carts)
 
-	// handlers
-	fmt.Printf("starting server")
-	mux.Handle("/", handlers.IndexHandler())
+	// start of server
+	fmt.Printf("starting server at port %s\n", defaultPort)
 	http.ListenAndServe(":8080", mux)
 }
 
@@ -120,10 +119,8 @@ func storeTestData(r cart.Repository) {
 	if err := r.Store(test1); err != nil {
 		panic(err)
 	}
-	fmt.Printf("stored test1")
 	log.Print("stored test1")
 
-	//gives error when storing two values at same time?
 	test2 := cart.New("test2")
 	if err2 := r.Store(test2); err2 != nil {
 		panic(err2)

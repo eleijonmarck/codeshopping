@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"net/http"
 
 	"encoding/json"
@@ -21,11 +22,15 @@ func CreateCart(cr cart.Repository) http.Handler {
 		err := cr.Store(newCart)
 		if err != nil {
 			//error handling
+			fmt.Printf("Store of %s could not be completed due to %v\n", key, err)
+			return
 		}
 		val := []byte{}
-		err2 := json.Unmarshal(val, newCart)
+		err2 := json.Unmarshal(val, &newCart)
 		if err2 != nil {
 			//
+			fmt.Printf("Could not unmarshal the cart %v, how does it look like with & %v, or * %v", newCart, &newCart, *newCart)
+			return
 		}
 		w.WriteHeader(http.StatusCreated)
 		w.Write(val)
