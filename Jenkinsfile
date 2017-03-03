@@ -21,3 +21,4 @@ def runMake(command){
     node {
         sh 'make ${command}'
 }
+}
