@@ -48,8 +48,10 @@ func (r *cartRepository) FindAll() []*cart.Cart {
 	c := r.Pool.Get()
 	// TODO: return slices of bytes and return them
 	keys, err := redis.Strings(c.Do("KEYS", "test*"))
+	fmt.Printf("Got the keys %s", keys)
 	if err != nil {
 		// handle it
+		fmt.Printf("Couldnt get the keys %s", keys)
 	}
 	var result = make([]*cart.Cart, len(keys))
 	carts, err2 := redis.ByteSlices(c.Do("MGET", keys))
@@ -61,6 +63,7 @@ func (r *cartRepository) FindAll() []*cart.Cart {
 	for i := 0; i < len(carts); i++ {
 		json.Unmarshal(carts[i], result[i])
 	}
+	fmt.Println("FindAll() returning the result %s", result)
 	return result
 }
 
