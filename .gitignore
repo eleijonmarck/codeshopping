@@ -1,8 +1,10 @@
 appWebClient/node_modules
 coverage
 lib
+main
 *.log
 .DS_Store
+.editorconfig
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
