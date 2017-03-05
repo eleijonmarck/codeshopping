@@ -2,6 +2,7 @@ appWebClient/node_modules
 coverage
 lib
 main
+dump.rdb
 *.log
 .DS_Store
 .editorconfig
