@@ -1,11 +1,10 @@
-package api
+package cart
 
 import (
 	"encoding/json"
 	"net/http"
 
 	"fmt"
-	"github.com/eleijonmarck/codeshopping/cart"
 	"strings"
 )
 
@@ -13,7 +12,8 @@ type ret struct {
 	Carts []byte `json:"carts"`
 }
 
-func GetCart(cr cart.Repository) http.Handler {
+// GetCart returns the cart if it finds it in the database
+func GetCart(cr Repository) http.Handler {
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		id := strings.TrimPrefix(r.URL.Path, "/carts/")

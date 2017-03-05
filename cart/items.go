@@ -1,16 +1,16 @@
-package api
+package cart
 
 import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/eleijonmarck/codeshopping/cart"
 	"log"
 )
 
-func Items(cr cart.Repository) http.Handler {
+// Items returns the items that belong to the id of the cart
+func Items(cr Repository) http.Handler {
 	type ret struct {
-		Items map[string]*cart.CartItem `json:"items"`
+		Items map[string]*CartItem `json:"items"`
 	}
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		key := r.URL.Query().Get("key")
@@ -25,7 +25,7 @@ func Items(cr cart.Repository) http.Handler {
 		if err != nil {
 			// error handling
 		}
-		log.Printf("api/items, called")
+		log.Printf("cart item called")
 		w.WriteHeader(http.StatusOK)
 		w.Write(jsonitems)
 	})

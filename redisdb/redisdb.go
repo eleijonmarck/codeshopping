@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"github.com/eleijonmarck/codeshopping/cart"
 	"github.com/garyburd/redigo/redis"
+	"net/url"
+	"time"
 )
 
 type cartRepository struct {
@@ -60,6 +62,42 @@ func (r *cartRepository) FindAll() []*cart.Cart {
 		json.Unmarshal(carts[i], result[i])
 	}
 	return result
+}
+
+// NewRedisPool returns a new redis pool to be able to use
+func NewRedisPool(addr string, maxIdle, maxActive int) (*redis.Pool, error) {
+	url, err := url.Parse(addr)
+	if err != nil {
+		return nil, err
+	}
+
+	return &redis.Pool{
+		MaxIdle:     maxIdle,
+		MaxActive:   maxActive,
+		Wait:        true,
+		IdleTimeout: 240 * time.Second,
+		Dial: func() (redis.Conn, error) {
+			c, err := redis.Dial("tcp", url.Host)
+			if err != nil {
+				return nil, err
+			}
+
+			if url.User != nil {
+				password, _ := url.User.Password()
+				_, err := c.Do("AUTH", password)
+				if err != nil {
+					c.Close()
+					return nil, err
+				}
+			}
+
+			return c, nil
+		},
+		TestOnBorrow: func(c redis.Conn, _ time.Time) error {
+			_, err := c.Do("PING")
+			return err
+		},
+	}, nil
 }
 
 // NewCartRepository creates a repository for storage of the carts
