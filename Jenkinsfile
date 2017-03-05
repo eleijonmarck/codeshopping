@@ -19,6 +19,6 @@ node {
 
 def runMake(command){
     node {
-        sh 'make ${command}'
+        sh 'go test | $(go list ./... | -v /vendor/)'
 }
 }
