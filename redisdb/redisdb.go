@@ -39,7 +39,7 @@ func (r *cartRepository) Find(key string) (*cart.Cart, error) {
 	err2 := json.Unmarshal(values, &carty)
 	if err2 != nil {
 		//
-		fmt.Println("lol")
+		fmt.Println("Error occured in redisgodb Find with error %s", err2)
 	}
 	return &carty, err
 }

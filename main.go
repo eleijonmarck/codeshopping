@@ -46,8 +46,8 @@ func main() {
 	mux := http.NewServeMux()
 
 	// api
+	mux.Handle("/carts", cart.Carts(carts))
 	mux.Handle("/carts/", cart.GetCart(carts))
-	mux.Handle("/carts/create", cart.CreateCart(carts))
 	mux.Handle("/", http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("Pong")) })))
 
 	// test storage
