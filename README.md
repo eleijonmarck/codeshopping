@@ -7,6 +7,7 @@ A webshop purely focused on programming / code / machine learning / math / compu
 * [goddd](https://github.com/marcusolsson/goddd/blob/master/main.go)
 
 Continuous Deployment
+
 1. We SCM-poll the github repo or POST changes via a webhook
 2. Project is built via ```make build```
 3. Tests are run ```make test```
